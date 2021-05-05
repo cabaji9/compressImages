@@ -27,8 +27,9 @@ public class TestImgsCal {
         compressImage("image.png");
         compressImage("roadmap.png");
 
-        compressImageBySize("pexels-maxime-francis-2246476.jpg",300);
-        compressImageBySize("image.png",300);
+      compressImageBySize("pexels-maxime-francis-2246476.jpg",300);
+       compressImageBySize("image.png",300);
+        compressImageBySize("roadmap.png",2024); //best result to be read
     }
 
 
@@ -40,7 +41,7 @@ public class TestImgsCal {
                     url);
             int w = image.getWidth();
             int h = image.getHeight();
-            BufferedImage resizedImage = resizeImage(image,w/2,h/2);
+            BufferedImage resizedImage = resizeImage(image,(85*w)/100,(85*h)/100);
 
             Path resourceDirectory = Paths.get("src","test","resources","result");
             String absolutePath = resourceDirectory.toFile().getAbsolutePath();
@@ -77,12 +78,12 @@ public class TestImgsCal {
     }
 
     public BufferedImage resizeImage(BufferedImage originalImage, int targetWidth, int targetHeight) {
-        return Scalr.resize(originalImage, Scalr.Method.AUTOMATIC, Scalr.Mode.AUTOMATIC, targetWidth, targetHeight, Scalr.OP_ANTIALIAS);
+        return Scalr.resize(originalImage, Scalr.Method.ULTRA_QUALITY, Scalr.Mode.AUTOMATIC, targetWidth, targetHeight, Scalr.OP_ANTIALIAS);
     }
 
 
     public BufferedImage resizeImageBySize(BufferedImage originalImage, int size) {
-        return Scalr.resize(originalImage,size);
+        return Scalr.resize(originalImage,size,Scalr.OP_ANTIALIAS);
     }
 
 
